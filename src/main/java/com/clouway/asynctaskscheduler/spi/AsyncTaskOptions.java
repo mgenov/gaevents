@@ -1,5 +1,6 @@
 package com.clouway.asynctaskscheduler.spi;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 
 import java.util.Date;
@@ -29,6 +30,13 @@ public class AsyncTaskOptions {
       throw new IllegalArgumentException("parameters cannot be add to a " + this.getClass().getName() + " when event is provided!");
     } else if (name != null && value != null) {
       params.put(name, value);
+    }
+    return this;
+  }
+
+  public AsyncTaskOptions addUserEmail(String email) {
+    if (!Strings.isNullOrEmpty(email)) {
+      params.put("user", email);
     }
     return this;
   }

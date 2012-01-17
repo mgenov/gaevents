@@ -16,6 +16,7 @@ import com.google.inject.Module;
 import com.google.inject.Provider;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 import com.google.inject.servlet.ServletModule;
 
 import javax.servlet.http.HttpServletRequest;
@@ -73,8 +74,8 @@ public class BackgroundTasksModule extends AbstractModule {
   }
 
   @Provides
-  public AsyncEventBus getAsyncEventBus(Provider<AsyncTaskScheduler> asyncTaskScheduler) {
-    return new TaskQueueEventBus(asyncTaskScheduler);
+  public AsyncEventBus getAsyncEventBus(Provider<AsyncTaskScheduler> asyncTaskScheduler,Provider<HttpServletRequest> requestProvider, @Named("emailFromRequest")Provider<String> emailProvider) {
+    return new TaskQueueEventBus(asyncTaskScheduler, requestProvider, emailProvider);
   }
 
   @Provides

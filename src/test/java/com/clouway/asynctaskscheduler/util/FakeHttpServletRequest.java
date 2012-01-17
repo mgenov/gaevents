@@ -1,7 +1,6 @@
 package com.clouway.asynctaskscheduler.util;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -44,6 +43,11 @@ public class FakeHttpServletRequest extends HttpServletRequestWrapper {
   @Override
   public Map getParameterMap() {
     return ImmutableMap.copyOf(requestParameters);
+  }
+
+  @Override
+  public String getParameter(String value) {
+    return "test";
   }
 
   @Override
